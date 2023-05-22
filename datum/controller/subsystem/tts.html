@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;tts - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/tts.html#var">Var Details</a></header>
+<main>
+<h1>tts <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/tts.html">tts</a></aside>
+        
+    
+            <a href="https://github.com/Higgin/Skyrat-tg/blob/c37ae7f53f7b71286c588b103f481eadaf5cc2d1/code/controllers/subsystem/tts.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tts.dm 7"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/tts.html#var/available_speakers">available_speakers</a></th><td>A list of available speakers, which are string identifiers of the TTS voices that can be used to generate TTS messages.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tts.html#var/average_tts_messages_time">average_tts_messages_time</a></th><td>Used to calculate the average time it takes for a tts message to be received from the http server
+For tts messages which time out, it won't keep tracking the tts message and will just assume that the message took
+7 seconds (or whatever the value of message_timeout is) to receive back a response.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tts.html#var/cached_voices">cached_voices</a></th><td>A list of current tts messages being processed, mapped by their sha1 identifier.
+Used to prevent double processing of the same message, voice and filter, since we can just
+cache extra requests to the current tts message being processed at once and play them upon request completion.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tts.html#var/current_processing_tts_messages">current_processing_tts_messages</a></th><td>HTTP requests that are being processed to see if they've been finished</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tts.html#var/in_process_tts_messages">in_process_tts_messages</a></th><td>HTTP requests currently in progress but not being processed yet</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tts.html#var/max_concurrent_requests">max_concurrent_requests</a></th><td>The max concurrent http requests that can be made at one time. Used to prevent 1 server from overloading the tts server</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tts.html#var/message_timeout">message_timeout</a></th><td>TTS messages won't play if requests took longer than this duration of time.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tts.html#var/message_timeout_early_minimum">message_timeout_early_minimum</a></th><td>Messages can be timed out earlier if the algorithm thinks that
+it's going to take too long for their message to be processed.
+This'll determine the minimum extent of how late it is allowed to begin timing messages out</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tts.html#var/queued_tts_messages">queued_tts_messages</a></th><td>Queued HTTP requests that have yet to be sent. TTS requests are handled as lists rather than datums.
+It could be worth refactoring TTS messages to be datums instead to reduce complexity.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/tts.html#var/tts_enabled">tts_enabled</a></th><td>Whether TTS is enabled or not</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/available_speakers"><aside class="declaration">var </aside>available_speakers
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Higgin/Skyrat-tg/blob/c37ae7f53f7b71286c588b103f481eadaf5cc2d1/code/controllers/subsystem/tts.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tts.dm 25"/></a></h3>
+        <p>A list of available speakers, which are string identifiers of the TTS voices that can be used to generate TTS messages.</p><h3 id="var/average_tts_messages_time"><aside class="declaration">var </aside>average_tts_messages_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Higgin/Skyrat-tg/blob/c37ae7f53f7b71286c588b103f481eadaf5cc2d1/code/controllers/subsystem/tts.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tts.dm 49"/></a></h3>
+        <p>Used to calculate the average time it takes for a tts message to be received from the http server
+For tts messages which time out, it won't keep tracking the tts message and will just assume that the message took
+7 seconds (or whatever the value of message_timeout is) to receive back a response.</p><h3 id="var/cached_voices"><aside class="declaration">var </aside>cached_voices
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Higgin/Skyrat-tg/blob/c37ae7f53f7b71286c588b103f481eadaf5cc2d1/code/controllers/subsystem/tts.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tts.dm 30"/></a></h3>
+        <p>A list of current tts messages being processed, mapped by their sha1 identifier.
+Used to prevent double processing of the same message, voice and filter, since we can just
+cache extra requests to the current tts message being processed at once and play them upon request completion.</p><h3 id="var/current_processing_tts_messages"><aside class="declaration">var </aside>current_processing_tts_messages
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Higgin/Skyrat-tg/blob/c37ae7f53f7b71286c588b103f481eadaf5cc2d1/code/controllers/subsystem/tts.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tts.dm 22"/></a></h3>
+        <p>HTTP requests that are being processed to see if they've been finished</p><h3 id="var/in_process_tts_messages"><aside class="declaration">var </aside>in_process_tts_messages
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/Higgin/Skyrat-tg/blob/c37ae7f53f7b71286c588b103f481eadaf5cc2d1/code/controllers/subsystem/tts.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tts.dm 19"/></a></h3>
+        <p>HTTP requests currently in progress but not being processed yet</p><h3 id="var/max_concurrent_requests"><aside class="declaration">var </aside>max_concurrent_requests
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Higgin/Skyrat-tg/blob/c37ae7f53f7b71286c588b103f481eadaf5cc2d1/code/controllers/subsystem/tts.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tts.dm 44"/></a></h3>
+        <p>The max concurrent http requests that can be made at one time. Used to prevent 1 server from overloading the tts server</p><h3 id="var/message_timeout"><aside class="declaration">var </aside>message_timeout
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Higgin/Skyrat-tg/blob/c37ae7f53f7b71286c588b103f481eadaf5cc2d1/code/controllers/subsystem/tts.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tts.dm 36"/></a></h3>
+        <p>TTS messages won't play if requests took longer than this duration of time.</p><h3 id="var/message_timeout_early_minimum"><aside class="declaration">var </aside>message_timeout_early_minimum
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Higgin/Skyrat-tg/blob/c37ae7f53f7b71286c588b103f481eadaf5cc2d1/code/controllers/subsystem/tts.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tts.dm 41"/></a></h3>
+        <p>Messages can be timed out earlier if the algorithm thinks that
+it's going to take too long for their message to be processed.
+This'll determine the minimum extent of how late it is allowed to begin timing messages out</p><h3 id="var/queued_tts_messages"><aside class="declaration">var </aside>queued_tts_messages
+            <aside>&ndash; /<a href="datum.html">datum</a>/heap</aside>
+        
+    
+            <a href="https://github.com/Higgin/Skyrat-tg/blob/c37ae7f53f7b71286c588b103f481eadaf5cc2d1/code/controllers/subsystem/tts.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tts.dm 16"/></a></h3>
+        <p>Queued HTTP requests that have yet to be sent. TTS requests are handled as lists rather than datums.
+It could be worth refactoring TTS messages to be datums instead to reduce complexity.</p><h3 id="var/tts_enabled"><aside class="declaration">var </aside>tts_enabled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/Higgin/Skyrat-tg/blob/c37ae7f53f7b71286c588b103f481eadaf5cc2d1/code/controllers/subsystem/tts.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;tts.dm 33"/></a></h3>
+        <p>Whether TTS is enabled or not</p></main>
+<footer>
+    tgstation.dme
+    <a href="https://github.com/Higgin/Skyrat-tg/tree/c37ae7f53f7b71286c588b103f481eadaf5cc2d1">c37ae7f</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.7.3</a></footer>
+</body>
+</html>
